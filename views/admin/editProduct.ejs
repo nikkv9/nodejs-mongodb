@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+   <%- include('../includes/navbar.ejs') %>
+
+    <main>
+        <form class="product-form" action="/admin/editProduct" method="POST" enctype="multipart/form-data">
+            <div class="form-control">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" value="<%= product.title %>">
+            </div>
+            <div class="form-control">
+                <label for="image">Image</label>
+                <input type="file" name="image" id="image" >
+            </div>
+            <div class="form-control">
+                <label for="price">Price</label>
+                <input type="number" name="price" id="price" step="0.01" value="<%= product.price %>">
+            </div>
+            <div class="form-control">
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description" value="<%= product.description %>">
+            </div>
+            
+                <input type="hidden" value="<%= product._id %>" name="productId">
+          <input type="hidden" value="<%= csrfToken %>" name="_csrf" />
+            <button class="btn" type="submit">Update Product</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
